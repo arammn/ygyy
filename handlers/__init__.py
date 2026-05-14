@@ -1,0 +1,2 @@
+from .admin_private import register_admin_handlers
+from .group_messages import register_group_handlers
