@@ -5,6 +5,8 @@ from telegram.ext import ApplicationBuilder, ContextTypes
 from config import Config
 from database import Database
 from auction import AuctionManager
+from lucky_draw import LuckyDrawManager
+from guess_number import GuessNumberManager
 from handlers.admin_private import register_admin_handlers
 from handlers.group_messages import register_group_handlers
 
@@ -21,6 +23,8 @@ class App:
         self.application = None
         self.db = Database()
         self.auction_mgr = AuctionManager()
+        self.lucky_mgr = LuckyDrawManager()
+        self.guess_mgr = GuessNumberManager()
         self._heartbeat_job = None
 
     async def initialize(self):
@@ -31,6 +35,8 @@ class App:
         register_admin_handlers(self.application)
         register_group_handlers(self.application)
         await self.auction_mgr.restore_timers(self.application)
+        await self.lucky_mgr.restore_timers(self.application)
+        await self.guess_mgr.restore_timers(self.application)
         logger.info("Bot initialized")
 
     async def start(self):
@@ -42,11 +48,10 @@ class App:
                 drop_pending_updates=True,
                 allowed_updates=["message", "callback_query", "my_chat_member"]
             )
-            # Periodic heartbeat every 60 seconds
             self._heartbeat_job = self.application.job_queue.run_repeating(
                 self._admin_heartbeat, interval=3600, first=10
             )
-            logger.info("Heartbeat job started")
+            logger.info("Heartbeat (1h) started")
             await asyncio.Future()
         except KeyboardInterrupt:
             pass
@@ -54,8 +59,7 @@ class App:
             await self.shutdown()
 
     async def shutdown(self):
-        if self._heartbeat_job:
-            self._heartbeat_job.schedule_removal()
+        if self._heartbeat_job: self._heartbeat_job.schedule_removal()
         if self.application:
             await self.application.updater.stop()
             await self.application.stop()
@@ -63,14 +67,14 @@ class App:
         await self.db.close()
         logger.info("Bot shut down completely")
 
-    async def _admin_heartbeat(self, context: ContextTypes.DEFAULT_TYPE):
-        """Send minimal bot status to all admins."""
+    async def _admin_heartbeat(self, context):
         try:
             counts = await self.db.get_active_game_counts()
             auctions = counts['auctions']
             lucky = counts['lucky_draws']
             dice = counts['dice']
-            total = auctions + lucky + dice
+            guess = counts['guess_number']
+            total = auctions + lucky + dice + guess
             if total == 0:
                 msg = "✅ Бот активен. Сейчас нет активных игр."
             else:
@@ -78,14 +82,12 @@ class App:
                 if auctions: parts.append(f"Аукционы: {auctions}")
                 if lucky: parts.append(f"Lucky Draw: {lucky}")
                 if dice: parts.append(f"Кости: {dice}")
+                if guess: parts.append(f"Угадай число: {guess}")
                 msg = f"✅ Бот активен. Активных игр: {total} ({', '.join(parts)})"
             for admin_id in Config.ADMIN_IDS:
-                try:
-                    await context.bot.send_message(admin_id, msg)
-                except Exception:
-                    logger.debug(f"Could not send heartbeat to admin {admin_id}")
-        except Exception as e:
-            logger.error(f"Heartbeat error: {e}")
+                try: await context.bot.send_message(admin_id, msg)
+                except: pass
+        except Exception as e: logger.error(f"Heartbeat error: {e}")
 
 async def main():
     app = App()
@@ -93,7 +95,5 @@ async def main():
     await app.start()
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        sys.exit(0)
+    try: asyncio.run(main())
+    except KeyboardInterrupt: sys.exit(0)
