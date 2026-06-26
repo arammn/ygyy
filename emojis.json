@@ -1,0 +1,17 @@
+{
+  "EMOJI_WIN": "<tg-emoji emoji-id=\"5424767999515040992\">🏆</tg-emoji>",
+  "EMOJI_AUCTION": "<tg-emoji emoji-id=\"5411208109156769700\">👩‍⚖️</tg-emoji>",
+  "EMOJI_CASINO": "🎰",
+  "EMOJI_EVENT": "🎯",
+  "EMOJI_ALERT": "🚨",
+  "EMOJI_SETTINGS": "⚙️",
+  "EMOJI_LOGS": "📜",
+  "EMOJI_IGNORE": "🚫",
+  "EMOJI_BID": "💰",
+  "EMOJI_PRIZE": "<tg-emoji emoji-id=\"5413802784799626862\">🎁</tg-emoji>",
+  "EMOJI_TIMER": "<tg-emoji emoji-id=\"5316698440434989602\">✨</tg-emoji>",
+  "EMOJI_FIRE": "<tg-emoji emoji-id=\"5389038097860144794\">🔥</tg-emoji>",
+  "EMOJI_LUCK": "🍀",
+  "EMOJI_WINNER": "<tg-emoji emoji-id=\"5170162552956519052\">🎉</tg-emoji>",
+  "EMOJI_STAR": "⭐"
+}

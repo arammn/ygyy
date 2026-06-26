@@ -1,0 +1,17 @@
+{
+  "AUCTION_START": "{EMOJI_AUCTION} АУКЦИОН НАЧАЛСЯ!\n\n{EMOJI_PRIZE} Приз: {prize} \n\n{EMOJI_TIMER} Длительность: {duration} сек.\n\nКаждое сообщение — ставка! Последний написавший побеждает!\nНапишите сейчас, чтобы выйти вперёд!",
+  "AUCTION_FIRST_BID": "{EMOJI_FIRE} Первая ставка от @{username}! \n\n{EMOJI_WIN} Лидирует! \n\n{EMOJI_TIMER} Осталось {remaining} сек.",
+  "AUCTION_SAME_BID": "{EMOJI_FIRE} @{username} укрепляет лидерство! (ставка #{bid_count})\n{EMOJI_TIMER} Осталось {remaining} сек.",
+  "AUCTION_NEW_BID": "{EMOJI_FIRE} Новая ставка от @{username}! \n\n{EMOJI_WIN} Новый лидер: @{username} \n\n{EMOJI_TIMER} Осталось {remaining} сек.",
+  "AUCTION_COUNTDOWN": "{EMOJI_TIMER} Осталось {label}! \n\n{EMOJI_FIRE} Текущий лидер: {leader} \nЕщё есть время сделать ставку!",
+  "AUCTION_WIN": "{EMOJI_WINNER} <b>АУКЦИОН ЗАВЕРШЁН!</b>\n\n🏆 Победитель: <b>@{winner}</b>\n{EMOJI_PRIZE} Приз: <b>{prize}</b>\n\nВсего ставок: {bid_count}\nПоздравляем! 🎊",
+  "AUCTION_NO_WINNER": "{EMOJI_AUCTION} <b>Аукцион завершён</b>\n\nСтавок не было.",
+  "AUCTION_STOPPED": "{EMOJI_AUCTION} <b>Аукцион завершён</b>\n\nОстановлен администратором.",
+  "CASINO_START": "{EMOJI_CASINO} <b>КАЗИНО ОТКРЫТО!</b>\n\n{EMOJI_PRIZE} Приз: <b>{prize}</b>\n\n{EMOJI_ALERT} Отправляйте 🎰 (слот-машину Telegram)!\n🎰 Первый, кто выбьет <b>777</b>, побеждает!\n\n<i>Отправьте эмодзи 🎰 из стикеров Telegram!</i>",
+  "CASINO_WIN": "{EMOJI_CASINO} 🎰🎰🎰\n\n{EMOJI_WINNER} <b>ДЖЕКПОТ! @{username} выбил 777!</b>\n{EMOJI_PRIZE} Приз: <b>{prize}</b>\n\n🎊 Поздравляем! Невероятная удача!",
+  "CASINO_NEAR_MISS": "{EMOJI_CASINO} Почти!\n@{username} — <i>Два одинаковых значения, но не джекпот! Попробуй ещё!</i>",
+  "CASINO_ROLL": "{EMOJI_CASINO} @{username} крутит барабаны...\n<i>Результат: {slot_display}</i>",
+  "RANDOM_START": "{EMOJI_LUCK} <b>СЛУЧАЙНЫЙ РОЗЫГРЫШ НАЧАЛСЯ!</b>\n\n{EMOJI_PRIZE} Приз: <b>{prize}</b>\n{EMOJI_ALERT} Шанс победы за сообщение: <b>{chance}%</b>\n{EMOJI_STAR} Победителей: <b>{max_winners}</b>\n\n<i>Каждое сообщение даёт шанс выиграть — пишите!</i>",
+  "RANDOM_WIN": "{EMOJI_WINNER} <b>ЕСТЬ ПОБЕДИТЕЛЬ!</b>\n\n{EMOJI_LUCK} @{username} выиграл!\n{EMOJI_PRIZE} Приз: <b>{prize}</b>\n\n{EMOJI_STAR} После {attempts} попыток — удача улыбнулась!\n🎊 Поздравляем!",
+  "RANDOM_ALL_WINNERS": "{EMOJI_WINNER} <b>ВСЕ ПОБЕДИТЕЛИ ОПРЕДЕЛЕНЫ!</b>\n\n{EMOJI_PRIZE} Приз: <b>{prize}</b>\n\n{winners_list}\n\n🎊 Поздравляем всех победителей!"
+}
